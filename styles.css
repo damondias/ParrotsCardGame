@@ -2,5 +2,55 @@
     box-sizing: border-box;
 }
 body{   
-    font-family: 'Roboto', sans-serif;  /* solicitado no projeto*/        
+    font-family: 'Roboto', sans-serif;  /* solicitado no projeto*/
+    
+    background-color: #EEF9BF;
+}
+
+.titulo{
+    width: 100vw;
+    height: 10vh;
+
+    padding-top: 40px;      /* Obtido no Figma tanto Desktop como no mobile*/
+
+    font-style: normal;     /* Obtido no Figma*/
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+
+    color: #75B79E;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+main{
+    padding-top: 47px; /* Obtido no Figma tanto Desktop como no mobile*/
+    display: flex;
+    gap: 34px;   
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-left: 12%;
+    margin-right: 12%;
+}
+.teste{
+    width: 117px;
+    height: 146px;
+
+    background-color: #A7E9AF;
+}
+
+@media (max-width: 600px){    /* Obtido no Figma 335px de largura e observado que a partir de 600px a fonte do desktop precisa ser mudada*/
+    .titulo{                  /* Para manter responsividade*/
+        font-size: 36px;
+        line-height: 42px;
+        text-align: center;
+        letter-spacing: -0.004em;
+    }
 }
