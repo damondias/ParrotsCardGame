@@ -23,24 +23,32 @@ function sortearCartas(qtdDeCartas){
            cartas.push(`${tipoDeCartas_sorteio[i]}`);
         }
     }    
-    console.log(cartas);    
+       
     let cartas_sorteadas = cartas.sort(comparador);    
     
     let cartas_jogo= document.querySelector("main");
     for(i=0;i<cartas_sorteadas.length;i++){
-        cartas_jogo.innerHTML += `<div class="carta" data-identifier="card">
-            <div class="face frente" data-identifier="front-face">
-                <img src= ${cartas_sorteadas[i]} alt="parrot${i}">  
-            </div>
-            <div class="face verso" data-identifier="back-face">
-                <img src="assets/front.png" alt="parrot">
-            </div>
-          </div>`   
+        cartas_jogo.innerHTML += `<div class="carta" data-identifier="card" onclick="virarCarta(this);">
+                                    <div class="face frente" data-identifier="front-face">
+                                        <img src= ${cartas_sorteadas[i]} alt="parrot${i}">  
+                                    </div>
+                                    <div class="face verso"  data-identifier="back-face">
+                                        <img src="assets/front.png" alt="parrot">
+                                    </div>
+                                  </div>`   
     }
-
+    jogo();
 }
 function comparador() { 
 	return Math.random() - 0.5; 
+}
+
+function virarCarta(cartaVirar){    
+    cartaVirar.classList.add("virar");   
+      
+}
+function jogo(){
+    return
 }
 
 inicio();

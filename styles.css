@@ -78,11 +78,11 @@ main{
     transform: rotateY(180deg);
 }
 
-.carta:hover .frente {
+.virar .frente {
     transform: rotateY(0deg);
 }
 
-.carta:hover .verso {
+.virar .verso{
     transform: rotateY(-180deg);
 }
 
