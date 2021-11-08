@@ -67,8 +67,7 @@ function virarCarta(cartaVirar){
       
 }
 
-let primeiraCarta, segundaCarta, primeiraCartaSelecionada, segundacartaSelecionada;
-
+let primeiraCarta, segundaCarta, primeiraCartaSelecionada, segundaCartaSelecionada;
 function cartasSelecionadas(carta){
     if (qtdCartasSelecionadas === 1){
         primeiraCarta = carta.innerHTML;
@@ -101,7 +100,27 @@ function jogo(){
     
     if (qtdDeCartas === 0){
         alert(`Parabéns, ganhou em ${qtdjogadas} jogadas`);
+        const novoJogo = prompt("Gostaria de reiniciar a partida? (Diga: sim)");
+        if(novoJogo === "sim"){
+            reiniciarJogo();
+        }
     }
+}
+
+function reiniciarJogo(){
+    qtdDeCartas = 0;
+    qtdCartasSelecionadas = 0;
+    qtdjogadas = 0;
+
+    primeiraCarta = undefined;
+    segundaCarta = undefined;
+    primeiraCartaSelecionada = undefined;
+    segundaCartaSelecionada = undefined;
+  
+    const limparCartas = document.querySelector("main");
+    limparCartas.innerHTML = "";
+        
+    inicio();
 }
 
 inicio();
