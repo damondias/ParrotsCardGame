@@ -89,11 +89,23 @@ main{
 .bloqueado{
     pointer-events: none;
 }
+
+.relogio{
+    width: 100px;
+    height: 40px;
+
+    font-size: 10px;
+    font-weight: bold;
+   
+    position: fixed;
+    top: 5px;
+    right: 5px;
+}
 @media (max-width: 600px){    /* Obtido no Figma 335px de largura e observado que a partir de 600px a fonte do desktop precisa ser mudada*/
     .titulo{                  /* Para manter responsividade*/
         font-size: 36px;
         line-height: 42px;
         text-align: center;
         letter-spacing: -0.004em;
-    }
+    }  
 }

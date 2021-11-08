@@ -5,16 +5,17 @@ let tipoDeCartas = ["assets/bobrossparrot.gif", "assets/explodyparrot.gif",
 
 let qtdDeCartas =0;
 function inicio(){
-    qtdDeCartas = parseInt(prompt("Com quantas cartas quer jogar? "));    
+    qtdDeCartas = parseInt(prompt("Com quantas cartas quer jogar?  "));    
 
     let regra = qtdDeCartas%2 !== 0 || qtdDeCartas < 4 || qtdDeCartas > 14; // Regra do jogo pelo requisito    
     while(regra){
-        qtdDeCartas = parseInt(prompt("Número inválido \nCom quantas cartas quer jogar?  "));        
+        qtdDeCartas = parseInt(prompt("Número de cartas inválido \nCom quantas cartas quer jogar?[4-14]  "));        
         regra = qtdDeCartas%2 != 0 || qtdDeCartas < 4 || qtdDeCartas > 14;        
     }
     sortearCartas(qtdDeCartas);   
 }
 
+let interval;
 function sortearCartas(qtdDeCartas){
     let qtdTipos = qtdDeCartas/2;    
     let tipoDeCartas_sorteio = tipoDeCartas.sort(comparador);   
@@ -38,7 +39,9 @@ function sortearCartas(qtdDeCartas){
                                         <img src="assets/front.png" alt="parrot">
                                     </div>
                                   </div>`   
-    }    
+    }
+    
+    interval = setInterval(relogio, 1000);
 }
 function comparador() { 
 	return Math.random() - 0.5; 
@@ -99,8 +102,11 @@ function jogo(){
     segundaCarta = undefined;
     
     if (qtdDeCartas === 0){
-        alert(`Parabéns, ganhou em ${qtdjogadas} jogadas`);
-        const novoJogo = prompt("Gostaria de reiniciar a partida? (Diga: sim)");
+
+        clearInterval(interval);
+        alert(`Parabéns, ganhou em ${qtdjogadas} jogadas em ${tempo} segundos!`);
+
+        const novoJogo = prompt("Gostaria de reiniciar a partida? [Diga: sim]");
         if(novoJogo === "sim"){
             reiniciarJogo();
         }
@@ -119,8 +125,20 @@ function reiniciarJogo(){
   
     const limparCartas = document.querySelector("main");
     limparCartas.innerHTML = "";
-        
+
+    tempo =0;
+    interval = undefined;
+
     inicio();
+}
+
+let tempo = 0;
+function relogio(){
+    tempo++;
+    const telaRelogio =document.querySelector(".relogio");
+    telaRelogio.innerHTML = ` <aside class="relogio">
+                                Tempo: ${tempo}s                                
+                              </aside>`;
 }
 
 inicio();
