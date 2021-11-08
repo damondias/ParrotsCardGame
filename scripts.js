@@ -1,6 +1,7 @@
 let tipoDeCartas = ["assets/bobrossparrot.gif", "assets/explodyparrot.gif", 
                     "assets/fiestaparrot.gif","assets/metalparrot.gif",
                     "assets/revertitparrot.gif", "assets/tripletsparrot.gif", "assets/unicornparrot.gif"];
+                    
 
 let qtdDeCartas =0;
 function inicio(){
@@ -50,18 +51,18 @@ function virarCarta(cartaVirar){
         qtdCartasSelecionadas++;
         cartaVirar.classList.add("virar");
     }
-    
+   
     const bloqueados = document.querySelectorAll(".carta");
     for(let i=0; i<bloqueados.length;i++){
         bloqueados[i].classList.add("bloqueado");
     }
-
+  
     setTimeout(() => {
         cartasSelecionadas(cartaVirar);
-        for(let i=0; i<bloqueados.length;i++){
+       for(let i=0; i<bloqueados.length;i++){
             bloqueados[i].classList.remove("bloqueado");
         }
-
+   
     },1000); 
       
 }
@@ -98,7 +99,9 @@ function jogo(){
     primeiraCarta = undefined;
     segundaCarta = undefined;
     
-
+    if (qtdDeCartas === 0){
+        alert(`Parabéns, ganhou em ${qtdjogadas} jogadas`);
+    }
 }
 
 inicio();
