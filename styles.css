@@ -86,6 +86,9 @@ main{
     transform: rotateY(-180deg);
 }
 
+.bloqueado{
+    pointer-events: none;
+}
 @media (max-width: 600px){    /* Obtido no Figma 335px de largura e observado que a partir de 600px a fonte do desktop precisa ser mudada*/
     .titulo{                  /* Para manter responsividade*/
         font-size: 36px;

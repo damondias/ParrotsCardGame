@@ -2,8 +2,9 @@ let tipoDeCartas = ["assets/bobrossparrot.gif", "assets/explodyparrot.gif",
                     "assets/fiestaparrot.gif","assets/metalparrot.gif",
                     "assets/revertitparrot.gif", "assets/tripletsparrot.gif", "assets/unicornparrot.gif"];
 
+let qtdDeCartas =0;
 function inicio(){
-    let qtdDeCartas = parseInt(prompt("Com quantas cartas quer jogar? "));    
+    qtdDeCartas = parseInt(prompt("Com quantas cartas quer jogar? "));    
 
     let regra = qtdDeCartas%2 !== 0 || qtdDeCartas < 4 || qtdDeCartas > 14; // Regra do jogo pelo requisito    
     while(regra){
@@ -19,7 +20,7 @@ function sortearCartas(qtdDeCartas){
     
     let cartas =[];
     for(let i=0; i<qtdTipos;i++){
-        for(j=0; j<2;j++){          
+        for(let j=0; j<2;j++){          
            cartas.push(`${tipoDeCartas_sorteio[i]}`);
         }
     }    
@@ -27,28 +28,77 @@ function sortearCartas(qtdDeCartas){
     let cartas_sorteadas = cartas.sort(comparador);    
     
     let cartas_jogo= document.querySelector("main");
-    for(i=0;i<cartas_sorteadas.length;i++){
+    for(let i=0;i<cartas_sorteadas.length;i++){
         cartas_jogo.innerHTML += `<div class="carta" data-identifier="card" onclick="virarCarta(this);">
                                     <div class="face frente" data-identifier="front-face">
-                                        <img src= ${cartas_sorteadas[i]} alt="parrot${i}">  
+                                        <img src= ${cartas_sorteadas[i]} alt="parrotdojogo">  
                                     </div>
                                     <div class="face verso"  data-identifier="back-face">
                                         <img src="assets/front.png" alt="parrot">
                                     </div>
                                   </div>`   
-    }
-    jogo();
+    }    
 }
 function comparador() { 
 	return Math.random() - 0.5; 
 }
 
-function virarCarta(cartaVirar){    
-    cartaVirar.classList.add("virar");   
+let qtdCartasSelecionadas =0;
+function virarCarta(cartaVirar){
+    const cartaVirada = cartaVirar.classList.contains("virar");    
+    if(cartaVirada === false){
+        qtdCartasSelecionadas++;
+        cartaVirar.classList.add("virar");
+    }
+    
+    const bloqueados = document.querySelectorAll(".carta");
+    for(let i=0; i<bloqueados.length;i++){
+        bloqueados[i].classList.add("bloqueado");
+    }
+
+    setTimeout(() => {
+        cartasSelecionadas(cartaVirar);
+        for(let i=0; i<bloqueados.length;i++){
+            bloqueados[i].classList.remove("bloqueado");
+        }
+
+    },1000); 
       
 }
+
+let primeiraCarta, segundaCarta, primeiraCartaSelecionada, segundacartaSelecionada;
+
+function cartasSelecionadas(carta){
+    if (qtdCartasSelecionadas === 1){
+        primeiraCarta = carta.innerHTML;
+        primeiraCartaSelecionada = carta;
+    }else if (qtdCartasSelecionadas === 2){
+        segundaCarta = carta.innerHTML;
+        segundaCartaSelecionada =carta;
+        jogo();
+    }
+
+}
+
+let qtdjogadas =0;
 function jogo(){
-    return
+    qtdjogadas++;
+    console.log(qtdjogadas);
+
+    if(primeiraCarta != segundaCarta){
+        primeiraCartaSelecionada.classList.remove("virar");
+        segundaCartaSelecionada.classList.remove("virar");
+    }else{
+        primeiraCartaSelecionada.removeAttribute("onclick");
+        segundaCartaSelecionada.removeAttribute("onclick");
+        qtdDeCartas -=2;
+    }
+
+    qtdCartasSelecionadas = 0;
+    primeiraCarta = undefined;
+    segundaCarta = undefined;
+    
+
 }
 
 inicio();
